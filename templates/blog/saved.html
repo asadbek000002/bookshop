@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <!----------PRODUCT SECTION-------  -->
+<body>
+{% if saveds %}
+ <!-- Products Start -->
+ <h1 class="product-text">  {{request.user}} Sizning saqlangan kitoblaringiz</h1>
+<div class="product-section">
+    {% for i in saveds %}
+    <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
+        <div class="product-item bg-light mb-4">
+            <div class="product-img ">
+                <img class="img-fluid w-100" src="{{ i.book.rasm.url}}" alt="">
+
+            </div>
+
+            <hr size="3" color="grey" style="margin: 0px 15px 8px 15px" >
+
+
+            <div class="text-center py-4">
+                <ul>
+                    <li><a class="text-truncate" href="{% url 'details' pk=i.book.pk %}"><h6>{{ i.book.sarlavha }}</h6></a></li>
+                    <p class="price">{{ i.book.narx }} som</p>
+                </ul>
+                <div class="save-time">
+                    <p>{{i.yaratilgan_vaqt }}</p>
+
+                </div>
+            </div>
+            <div class="product-action-saved">
+                <a href="{% url 'addremovesave' i.book.pk %}"><i class="fa-solid fa-bag-shopping"></i></a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="center">
+ <h1 class="product-text">  {{request.user}} Sizning saqlangan kitoblaringiz yoq</h1>
+</div>
+{% endif %}
+</body>
+{% endblock content %}

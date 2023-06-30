@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'style/style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap" rel="stylesheet">
+    <title>Review</title>
+</head>
+<body>
+
+
+    <!-- -------HEADER--------- -->
+    <header>
+        <div class="header">
+        <div class="header-1">
+            <a href="{% url 'home' %}" class="logo"><i class="fas fa-book"></i>Kitoblar</a>
+
+            <form method="GET" action="/books" class="search-form">
+                <input type="search" name="q" placeholder="search book..." id="search-box">
+                <label  for="search-box" class="fas fa-search"></label>
+            </form>
+            <div class="icons">
+                <div id="search-btn" class="fas fa-search"></div>
+                {% if user.is_authenticated %}
+                <h4>{{user.username}}, saytga xush kelibsiz</h4>
+                <a href="{% url 'logout' %}"  id="log-out">Log out</a>
+                {% else %}
+                <h4>siz saytga kirmagansiz</h4>
+                <a href="{% url 'login' %}" id="login-btn"><i class="fa-solid fa-user"></i></a>
+                <a href="{% url 'signup' %}" id="login-btn"><i class="fa-solid fa-address-card"></i></a>
+                {% endif %}
+
+            </div>
+        </div>
+
+        <div class="header-2">
+            <nav class="navbar">
+                <a href="{% url 'home' %}">asosiy oyna</a>
+                <a href="{% url 'books' %}">Kitoblar</a>
+                <a href="{% url 'tarix' %}">Xarid tarixi</a>
+                <a href="{% url 'saveds' %}">Saqlanganlar</a>
+            </nav>
+        </div>
+
+    </div>
+
+    </header>
+
+{% if messages %}
+
+
+
+        {% for message in messages %}
+            {% if message.tags %}
+<style>
+    .alert {
+        position: fixed;
+        top: -100px;
+        left: 95%;
+        transform: translateX(-90%);
+        padding: 1rem 2rem;
+        margin-bottom: 1rem;
+        border: 0.8px solid transparent;
+        border-radius: 1.1rem;
+        transition: top 0.6s ease-in-out;
+    }
+
+    .alert.show {
+        top: 140px;
+    }
+
+    .alert-warning {
+        color: #000000;
+        background-color: #b7e0a1;
+        border-color: #000000;
+    }
+
+    .alert .close-button {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: rem;
+        color: inherit;
+        background-color: transparent;
+        border: none;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var alertBox = document.querySelector('.alert');
+
+        setTimeout(function() {
+            alertBox.classList.add('show');
+        }, 600);
+
+        var closeButton = document.querySelector('.close-button');
+        closeButton.addEventListener('click', function() {
+            alertBox.classList.remove('show');
+        });
+    });
+</script>
+
+            <div class="alert alert-warning" role="alert">
+                <strong>Kitob!</strong>{{ message }}
+                <button type="button" class="close-button" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+             {% endif %}
+        {% endfor %}
+
+{% endif %}
+
+
+    {% block content %}
+    {% endblock content %}
+
+
+<!-- -------------FOOTER SECTION ------------ -->
+<section class="footer">
+    <div class="footer-home">
+        <div class="info">
+            <div class="footer-item">
+            <h3 class="footer-text">Ma'lumot</h3>
+            <ul>
+                <li><a href="#">Biz haqimizda</a></li>
+                <li><a href="#">qanday harid qilinadi</a></li>
+                <li><a href="#">homiylar uchun</a></li>
+                <li><a href="#">yetkazib berish</a></li>
+            </ul>
+        </div>
+        </div>
+        <div class="contact">
+            <div class="footer-item">
+            <h3 class="footer-text">biz bilan bog'laning</h3>
+            <div class="phone">
+                <i class="fa-solid fa-phone-volume"></i>
+                <div class="number">
+                    <p>+998-99-849-04-58</p>
+                    <p>+998-99-689-99-96</p>
+                </div>
+            </div>
+            <div class="message">
+                <i class="fa-regular fa-envelope"></i>
+                <p>info@book.uz</p>
+            </div>
+            <div class="location">
+                <i class="fa-solid fa-location-dot"></i>
+                <p>chilonzon-8, qatortol 60</p>
+            </div>
+        </div>
+        </div>
+        <div class="icon">
+            <div class="footer-item">
+            <h3 class="footer-text">ijtimoiy tarmoqlarimiz</h3>
+            <div class="icons-footer">
+                <a href="https://www.instagram.com/nodir_rustamofff"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://t.me/BeK_Bola0602"><i class="fa-brands fa-telegram"></i></a>
+                <a href="https://www.google.com"><i class="fa-brands fa-google"></i></a>
+                <a href="#"><i class="fa-brands fa-facebook"></i></a>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- ------fixed icon -->
+    <div class="fixed-icon">
+        <a href="#"><i class="fa-solid fa-arrow-up fa-bounce"></i></a>
+    </div>
+</section>
+<footer class="main-footer">
+    <p> book shop &copy; Online do'kon book.uz: Kitoblar. Mahsulotlarni yetkazib berish barcha hududlarda amalga oshirilmoqda. Barcha huquqlar himoyalangan.</p>
+</footer>
+</body>
+<script src="{% static 'js/script.js' %}"></script>
+</html>

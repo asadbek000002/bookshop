@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<body>
+<!-- --------------BOOK INFO SECTION -->
+    <div class="info-container">
+        <div class="info-book">
+            <!-- --info img -->
+            <div class="info-img">
+                <img src="{{ kitob.rasm.url }}" alt="">
+            </div>
+            <!-- ---info text -->
+            <div class="info-text">
+                <h1> {{ kitob.muallif }}: {{ kitob.sarlavha }}</h1>
+                <h2>{{ kitob.narx }} so'm</h2>
+                <ul>
+                    <li><span>sarlavha:</span>{{ kitob.sarlavha }}</li>
+                    <li><span>hajmi:</span>{{ kitob.mavjud_miqdor }}</li>
+                    <li><span>kitob haqida:</span>{{ kitob.tarif }}</li>
+                </ul>
+
+            </div>
+            <div class="info-muallif">
+                <img src="" alt="">
+                <h1></h1>
+                <h2></h2>
+            </div>
+        </div>
+    </div>
+                  <section>
+    <div class="form-info">
+        <h2>Ro'yxatdan o'tish</h2>
+        <form method="post">{% csrf_token %}
+             <div class="form-group">
+                 <label for="name">Ism</label>
+                 <input type="text" name="name" placeholder="ism  familiya..." class="form-control">
+            </div>
+
+            <div class="form-group">
+                 <label for="phone">tel.Nomer</label>
+                <input type="text" name="phone" placeholder="tel..." class="form-control">
+            </div>
+
+            <div class="form-group"  >
+                 <label for="yetkasiz">Yetkazish turi</label>
+                <input type="text" name="yetkasiz" placeholder="yetkazish..." class="form-control">
+            </div>
+            <div class="form-group">
+                 <label for="hudun">Yetkazib berish manzili</label>
+                <input type="text" name="hudun" placeholder="aniq manzil kiriting..." class="form-control">
+            </div>
+
+            <button type="submit">xarid qilish</button>
+        </form>
+    </div>
+</section>
+    </div>
+
+                                <style>
+                                /* CSS qoidalari */
+                                .form-info {
+                                    text-align:center;
+                                }
+                                .form-info h2 {
+                                    text-align: center;
+                                    font-size:3rem;
+                                }
+                                label {
+                                    display: block;
+                                    margin-bottom: 10px;
+                                    font-size: 2rem;
+                                    padding: 5px;
+                                     text-align: center;
+                                }
+                                input[type="text"] {
+                                    padding: 10px;
+                                    border-radius: 3px;
+                                    border: 1px solid #ccc;
+                                    width: 50%;
+                                    box-sizing: border-box;
+                                }
+                                button[type="submit"] {
+                                    margin-top: 15px;
+                                    width: 50%;
+                                    background-color: var(--green);
+                                    color: white;
+                                    padding: 15px;
+                                    border: none;
+                                    border-radius: 5px;
+                                    cursor: pointer;
+                                    font-weight: 900;
+                                }
+                                button[type="submit"]:hover {
+                                    background: none;
+                                    border: 3px solid var(--green);
+                                    color: #000;
+                                    font-weight: 900;
+                            </style>
+</body>
+{% endblock content %}
+

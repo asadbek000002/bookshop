@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+    <!----------PRODUCT SECTION-------  -->
+<body>
+{% if kitoblar %}
+ <!-- Products Start -->
+{% if q %}
+ <h1 class="product-text">"{{q}}" malumot topildi</h1>
+{% else %}
+  <h1 class="product-text">Kitoblar bolimi</h1>
+{% endif %}
+<div class="product-section">
+    {% for i in kitoblar %}
+    <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
+        <div class="product-item">
+            <div class="product-img">
+                <img class="img-fluid w-100" src="{{ i.rasm.url}}" alt="">
+
+            </div>
+
+            <hr size="3" color="grey" style="margin: 0px 15px 8px 15px" >
+
+            <div class="text-center">
+                <a class="text-truncate" href="{% url 'details' pk=i.pk %}"><h6>{{ i.sarlavha }}</h6></a>
+                <div class="d-flex align-items-center justify-content-center mt-2">
+                    <p class="price">{{ i.narx }} som</p>
+                </div>
+            </div>
+            <div class="product-action">
+                <a href="{% url 'addremovesave' i.pk %}"><i class="fa-solid fa-bag-shopping"></i></a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+
+    <div class="center">
+        <h1 style="text-align: center;"><br><br><br><br><br>afsuskiy malumot topilmadi :(</h1>
+    </div>
+{% endif %}
+</body>
+{% endblock content %}

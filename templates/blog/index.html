@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<body>
+
+  <!--------  HOME SECTION ------->
+<section class="home" id="home">
+    <div class="row">
+        <div class="content">
+            <h3>Siz izlagan barcha kitoblar</h3>
+            <p>Shunday odamlarni axtaringki, ular bilan suhbat qilmoq yaxshi kitob oʻqimoqqa barobar boʻlsin. Shunday kitoblarni axtaringki, mutolaasi faylasuflar suhbatiga teng boʻlsin.</p>
+            <a href="{% url 'books' %}" class="btn">Kitoblar</a>
+        </div>
+
+        <!-------BOOK SLIDER------->
+        <div class="books-slider">
+            <div class="wraper">
+            <a href="#"><img src="{% static './img/book1.webp' %}" alt=""></a>
+            <a href="#"><img src="{% static './img/book2.webp' %}" alt=""></a>
+            <a href="#"><img src="{% static './img/book3.webp' %}" alt=""></a>
+            <a href="#"><img src="{% static './img/book4.png' %}" alt=""></a>
+            <a href="#"><img src="{% static './img/book5.png' %}" alt=""></a>
+            <a href="#"><img src="{% static './img/book6.png' %}" alt=""></a>
+            </div>
+            <img src="" class="stand" alt="">
+        </div>
+    </div>
+</section>
+
+</body>
+{% endblock content %}

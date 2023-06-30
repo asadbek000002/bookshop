@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <!----------PRODUCT SECTION-------  -->
+<body>
+
+ <!-- Products Start -->
+ <h1 class="product-text">  {{ user.username }} Sizning xaridlar tarixingiz</h1>
+<div class="product-section">
+    {% for i in buys %}
+    <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
+        <div class="product-item bg-light mb-4">
+            <div class="product-img position-relative overflow-hidden">
+                <img class="img-fluid w-100" src="{{ i.kitob.rasm.url}}" alt="">
+
+            </div>
+
+                <hr size="3" color="grey" style="margin: 0px 15px 8px 15px" >
+
+            <div class="text-center py-4">
+                <a class="h6 text-decoration-none text-truncate" href="{% url 'details' pk=i.kitob.pk %}"><h6>{{ i.kitob.sarlavha }}</h6></a>
+                <div class="d-flex align-items-center justify-content-center mt-2">
+                    <p class="price">{{ i.kitob.narx }} som</p>
+                </div>
+            </div>
+            <div class="product-action">
+                 <a href="{% url 'addremovesave' i.kitob.pk %}"><i class="fa-solid fa-bag-shopping"></i></a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+</body>
+{% endblock content %}

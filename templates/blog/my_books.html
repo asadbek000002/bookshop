@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <!----------PRODUCT SECTION-------  -->
+<body>
+ <!-- Products Start -->
+<section class="product-info"></section>
+ <h1 class="product-text">shop product</h1>
+<div class="product-section">
+    {% for i in kitoblar %}
+    <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
+        <div class="product-item bg-light mb-4">
+            <div class="product-img position-relative overflow-hidden">
+                <img class="img-fluid w-100" src="{{ i.rasm.url}}" alt="">
+
+            </div>
+            <div class="text-center py-4">
+                <a class="h6 text-decoration-none text-truncate" href="{% url 'details' pk=i.pk %}">{{ i.sarlavha }}</a>
+                <div class="d-flex align-items-center justify-content-center mt-2">
+                    <h5 class="price">{{ i.narx }} som</h5>
+                </div>
+            </div>
+            <div class="product-action">
+                <a href="#"><i class="fa-solid fa-bag-shopping"></i></a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+</body>
+{% endblock content %}
